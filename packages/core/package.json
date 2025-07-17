@@ -1,7 +1,7 @@
 {
-  "name": "vite-pages-generate",
+  "name": "better-pages-generate",
   "version": "1.0.0",
-  "description": "Generated react-router file-based routes for Vite",
+  "description": "Better file routing library based on react-router",
   "main": "index.js",
   "type": "module",
   "author": "Chiko",

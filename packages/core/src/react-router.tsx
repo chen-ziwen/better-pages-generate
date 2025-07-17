@@ -16,7 +16,7 @@ const ROUTES = import.meta.glob<Module>(
 const preservedRoutes = generatePreservedRoutes<Omit<Module, 'Action'>>(PRESERVED)
 
 const regularRoutes = generateRegularRoutes<RouteObject, Partial<Module>>(ROUTES, (module, key) => {
-  const index = /index\.(jsx|tsx)$/.test(key) && !key.includes('pages/index') ? { index: true } : {}
+  const index = /index\.(jsx|tsx|mdx)$/.test(key) && !key.includes('pages/index') ? { index: true } : {}
   const Default = module?.default || Fragment
   const Page = () => (module?.Pending ? <Suspense fallback={<module.Pending />} children={<Default />} /> : <Default />)
   return { ...index, Component: Page, ErrorBoundary: module?.Catch, loader: module?.Loader, action: module?.Action }

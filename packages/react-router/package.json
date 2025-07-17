@@ -1,8 +1,7 @@
 {
-  "name": "@vite-pages-generate/react-router",
+  "name": "@better-pages-generate/react-router",
   "version": "1.0.0",
   "description": "Generated react-router file-based routes for Vite",
-  "main": "index.js",
   "type": "module",
   "author": "Chiko",
   "keywords": [
@@ -15,12 +14,15 @@
   ],
   "license": "MIT",
   "scripts": {
-    "dev": "vitest watch",
-    "build": "tsc --emitDeclarationOnly --noEmit false --outDir dist",
-    "test": "vitest run",
+    "dev": "tsup --watch",
+    "build": "tsup --clean",
     "type-check": "tsc --noEmit"
   },
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./core": {
       "types": "./src/core.ts",
       "import": "./src/core.ts"
@@ -53,13 +55,19 @@
   "packageManager": "pnpm@10.13.0",
   "devDependencies": {
     "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
     "react-router": "^7.7.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3",
     "vite": "^7.0.5",
     "vitest": "^3.2.4"
   },
   "peerDependencies": {
+    "react": ">=18",
+    "react-router": ">=7",
     "vite": ">=5"
+  },
+  "dependencies": {
+    "better-pages-generate": "workspace:*",
+    "fast-glob": "^3.3.3"
   }
 }

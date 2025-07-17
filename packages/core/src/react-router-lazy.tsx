@@ -16,7 +16,7 @@ const ROUTES = import.meta.glob<Module>([
 const preservedRoutes = generatePreservedRoutes<Omit<Module, 'Action'>>(PRESERVED)
 
 const regularRoutes = generateRegularRoutes<RouteObject, () => Promise<Partial<Module>>>(ROUTES, (module, key) => {
-  const index = /index\.(jsx|tsx)$/.test(key) && !key.includes('pages/index') ? { index: true } : {}
+  const index = /index\.(jsx|tsx|mdx)$/.test(key) && !key.includes('pages/index') ? { index: true } : {}
 
   return {
     ...index,
