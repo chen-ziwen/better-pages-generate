@@ -13,12 +13,11 @@ export default defineConfig([
     },
     external: ['react', 'react-router'],
     noExternal: ['better-pages-generate'],
-    inject: ['./src/react.js'],
   },
-  // {
-  //   entry: ['src/plugin'],
-  //   outDir: 'dist/plugin',
-  //   format: ['cjs', 'esm'],
-  //   dts: { entry: 'src/plugin/index.ts' },
-  // },
+  {
+    entry: ['src/plugin'],
+    outDir: 'dist/plugin',
+    format: ['cjs', 'esm'],
+    dts: { entry: 'src/plugin/index.ts' },
+  },
 ])
