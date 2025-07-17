@@ -1,0 +1,30 @@
+{
+  "name": "vite-page-generate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "type-check": "turbo type-check",
+    "prepare": "husky",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.0",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@types/node": "^24.0.14",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.5"
+  },
+  "lint-staged": {
+    "*.{css,html,json,js,jsx,ts,tsx}": [
+      "prettier --fix"
+    ]
+  }
+}

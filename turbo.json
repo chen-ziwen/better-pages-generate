@@ -1,0 +1,14 @@
+{
+  "ui": "stream",
+  "tasks": {
+    "dev": {
+      "cache": false
+    },
+    "build": {
+      "dependsOn": ["^build", "^test", "^type-check"],
+      "outputs": ["dist/**"]
+    },
+    "test": {},
+    "type-check": {}
+  }
+}

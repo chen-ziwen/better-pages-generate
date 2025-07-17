@@ -1,0 +1,65 @@
+{
+  "name": "vite-pages-generate",
+  "version": "1.0.0",
+  "description": "Generated react-router file-based routes for Vite",
+  "main": "index.js",
+  "type": "module",
+  "author": "Chiko",
+  "keywords": [
+    "react-router",
+    "file-base",
+    "pages",
+    "file-based-routing",
+    "typescript",
+    "vite"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitest watch",
+    "build": "tsc --emitDeclarationOnly --noEmit false --outDir dist",
+    "test": "vitest run",
+    "type-check": "tsc --noEmit"
+  },
+  "exports": {
+    "./core": {
+      "types": "./src/core.ts",
+      "import": "./src/core.ts"
+    },
+    "./react-router-lazy": {
+      "types": "./src/react-router-lazy.tsx",
+      "import": "./src/react-router-lazy.tsx"
+    },
+    "./react-router": {
+      "types": "./src/react-router.tsx",
+      "import": "./src/react-router.tsx"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "core": [
+        "./src/core.ts"
+      ],
+      "react-router-lazy": [
+        "./src/react-router-lazy.tsx"
+      ],
+      "react-router": [
+        "./src/react-router.tsx"
+      ]
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "packageManager": "pnpm@10.13.0",
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "react-router": "^7.7.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.5",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "vite": ">=5"
+  }
+}
