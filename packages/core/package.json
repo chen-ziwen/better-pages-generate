@@ -16,50 +16,35 @@
   "license": "MIT",
   "scripts": {
     "dev": "vitest watch",
-    "build": "tsc --emitDeclarationOnly --noEmit false --outDir dist",
+    "build": "tsup --clean",
     "test": "vitest run",
     "type-check": "tsc --noEmit"
   },
   "exports": {
     "./core": {
-      "types": "./src/core.ts",
-      "import": "./src/core.ts"
-    },
-    "./react-router-lazy": {
-      "types": "./src/react-router-lazy.tsx",
-      "import": "./src/react-router-lazy.tsx"
-    },
-    "./react-router": {
-      "types": "./src/react-router.tsx",
-      "import": "./src/react-router.tsx"
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
     }
   },
   "typesVersions": {
     "*": {
       "core": [
         "./src/core.ts"
-      ],
-      "react-router-lazy": [
-        "./src/react-router-lazy.tsx"
-      ],
-      "react-router": [
-        "./src/react-router.tsx"
       ]
     }
   },
   "files": [
-    "src"
+    "dist"
   ],
   "packageManager": "pnpm@10.13.0",
   "devDependencies": {
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "react-router": "^7.7.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3",
-    "vite": "^7.0.5",
     "vitest": "^3.2.4"
   },
   "peerDependencies": {
-    "vite": ">=5"
+    "vite": ">=5",
+    "react": ">=18",
+    "react-router": ">=7"
   }
 }
