@@ -38,5 +38,15 @@ export default defineConfig([
       'fs',
     ],
     clean: false,              // 不清理，避免与主构建冲突
+    onSuccess: async () => {
+      // 复制虚拟模块类型声明文件
+      const fs = await import('fs')
+      const path = await import('path')
+      const srcPath = path.resolve('src/plugin/virtual.d.ts')
+      const destPath = path.resolve('dist/plugin/virtual.d.ts')
+      if (fs.existsSync(srcPath)) {
+        fs.copyFileSync(srcPath, destPath)
+      }
+    }
   },
 ])

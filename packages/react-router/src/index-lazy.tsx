@@ -21,7 +21,7 @@ const regularRoutes = generateRegularRoutes<RouteObject, () => Promise<Partial<M
   return {
     ...index,
     lazy: async () => {
-      const Default = (await module())?.default || Fragment
+      const Default = (await module())?.default || (() => <Fragment />)
       const Pending = (await module())?.Pending
       const Page = () => (Pending ? <Suspense fallback={<Pending />} children={<Default />} /> : <Default />)
 
@@ -47,7 +47,7 @@ const Layout = () => (
 const App = () => (_app?.Pending ? <Suspense fallback={<_app.Pending />} children={<Layout />} /> : <Layout />)
 
 const app = { Component: _app?.default ? App : Layout, ErrorBoundary: _app?.Catch, loader: _app?.Loader }
-const fallback = { path: '*', Component: _404?.default || Fragment }
+const fallback = { path: '*', Component: _404?.default || (() => <Fragment />) }
 
 export const routes: RouteObject[] = [{ ...app, children: [...regularRoutes, fallback] }]
 let router: ReturnType<typeof createBrowserRouter>

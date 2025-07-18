@@ -17,7 +17,7 @@ const preservedRoutes = generatePreservedRoutes<Omit<Module, 'Action'>>(PRESERVE
 
 const regularRoutes = generateRegularRoutes<RouteObject, Partial<Module>>(ROUTES, (module, key) => {
   const index = /index\.(jsx|tsx|mdx)$/.test(key) && !key.includes('pages/index') ? { index: true } : {}
-  const Default = module?.default || Fragment
+  const Default = module?.default || (() => <Fragment />)
   const Page = () => (module?.Pending ? <Suspense fallback={<module.Pending />} children={<Default />} /> : <Default />)
   return { ...index, Component: Page, ErrorBoundary: module?.Catch, loader: module?.Loader, action: module?.Action }
 })
@@ -34,7 +34,7 @@ const Layout = () => (
 const App = () => (_app?.Pending ? <Suspense fallback={<_app.Pending />} children={<Layout />} /> : <Layout />)
 
 const app = { Component: _app?.default ? App : Layout, ErrorBoundary: _app?.Catch, loader: _app?.Loader }
-const fallback = { path: '*', Component: _404?.default || Fragment }
+const fallback = { path: '*', Component: _404?.default || (() => <Fragment />) }
 
 export const routes: RouteObject[] = [{ ...app, children: [...regularRoutes, fallback] }]
 let router: ReturnType<typeof createBrowserRouter>
