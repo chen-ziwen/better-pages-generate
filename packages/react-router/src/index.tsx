@@ -5,7 +5,14 @@ import type { ActionFunction, RouteObject, LoaderFunction } from 'react-router'
 import { generatePreservedRoutes, generateRegularRoutes } from './core'
 
 type Element = () => JSX.Element
-type Module = { default: Element; Loader?: LoaderFunction; Action?: ActionFunction; Catch?: Element; Pending?: Element }
+type Module = {
+  default: Element
+  Loader?: LoaderFunction
+  Action?: ActionFunction
+  Catch?: Element
+  Pending?: Element
+  Handle: any
+}
 
 const PRESERVED = import.meta.glob<Module>('/src/pages/(_app|404).{jsx,tsx}', { eager: true })
 const ROUTES = import.meta.glob<Module>(
@@ -19,7 +26,14 @@ const regularRoutes = generateRegularRoutes<RouteObject, Partial<Module>>(ROUTES
   const index = /index\.(jsx|tsx|mdx)$/.test(key) && !key.includes('pages/index') ? { index: true } : {}
   const Default = module?.default || (() => <Fragment />)
   const Page = () => (module?.Pending ? <Suspense fallback={<module.Pending />} children={<Default />} /> : <Default />)
-  return { ...index, Component: Page, ErrorBoundary: module?.Catch, loader: module?.Loader, action: module?.Action }
+  return {
+    ...index,
+    Component: Page,
+    ErrorBoundary: module?.Catch,
+    loader: module?.Loader,
+    action: module?.Action,
+    handle: module?.Handle,
+  }
 })
 
 const _app = preservedRoutes?.['_app']
@@ -27,9 +41,7 @@ const _404 = preservedRoutes?.['404']
 
 const Default = _app?.default || Outlet
 
-const Layout = () => (
-    <Default /> 
-)
+const Layout = () => <Default />
 
 const App = () => (_app?.Pending ? <Suspense fallback={<_app.Pending />} children={<Layout />} /> : <Layout />)
 

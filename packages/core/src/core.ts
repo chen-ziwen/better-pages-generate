@@ -4,7 +4,7 @@ export const patterns = {
   param: [/\[([^\]]+)\]/g, ':$1'],
   slash: [/^index$|\./g, '/'],
   optional: [/^-(:?[\w-]+|\*)/, '$1?'],
-} as const;
+} as const
 
 type PreservedKey = '_app' | '404'
 type BaseRoute = { id?: string; path?: string; children?: BaseRoute[] } & Record<string, any>
