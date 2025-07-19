@@ -1,1 +1,2 @@
-# vite-pages-generate
+# 已弃用
+其实已经可以初步的实现 react-router 的文件路由系统，但是扩展性不行，换一种思路继续实现。
